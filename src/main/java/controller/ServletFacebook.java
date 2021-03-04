@@ -188,7 +188,7 @@ public class ServletFacebook extends HttpServlet {
         if (post.getUser_id()==userId) {
             req.setAttribute("post", post);
             req.setAttribute("userId", userId);
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("update.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/update.jsp");
             try {
                 requestDispatcher.forward(req, resp);
             } catch (ServletException e) {

@@ -39,25 +39,8 @@
         </div>
     </form>
 </nav>
-
-
-<div class="container-fluid gedf-wrapper">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="h5"><img src="${user.getAvatar()}" width="70px"></div>
-                    <div class="h5">${user.getAccount()}</div>
-                    <div class="h7 text-muted">email : ${user.getEmail()}</div>
-                    <div class="h7">address: ${user.getAddress()}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 gedf-main">
-
             <!--- \\\\\\\Post-->
-            <c:forEach items="${list}" var="post">
+<form method="post">
                 <div class="card gedf-card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
@@ -89,12 +72,12 @@
                         <img src="${post.getImage()}>">
 
                         <p class="card-text">
-                                ${post.getContent()}
+                            <textarea name="content"> ${post.getContent()}</textarea>
                         </p>
                     </div>
                     <div class="card-footer">
                         <span class="card-link"><i class="fa fa-gittip"></i>${post.getLikeAmount()}</span>
-                        <a href="facebook?action=likes&userId=${userId}&postId=${post.getId()}" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                        <span class="card-link"><i class="fa fa-gittip"></i> Like</span>
                         <span class="card-link">${post.getCommentAmount()}</span>
                         <a href="#" class="card-link"><i class="fa fa-gittip"></i> comment</a>
                     </div>
@@ -105,16 +88,13 @@
                             </p>
                         </div>
                     </c:forEach>
-                    <div class="card-body">
-                        <form method="post" action="/facebook?action=comment&userId=${userId}&postId=${post.getId()}">
-                            <textarea name="content"></textarea>
-                            <input type="submit" value="comment">
-                        </form>
-                    </div>
                 </div>
-            </c:forEach>
+    <div class="card-footer">
+        <button type="submit" class="card-link"><i class="fa fa-gittip"></i>UPDATE</button>
+        <BUTTON class="card-link"><a href="/facebook?action=home&id=${userId}">CANCEL</a></BUTTON>
+    </div>
+</form>
             <!-- Post /////-->
-
         </div>
     </div>
 </div>

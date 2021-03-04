@@ -46,6 +46,7 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
+                    <div class="h5"><img src="${user.getAvatar()}" width="70px"></div>
                     <div class="h5">${user.getAccount()}</div>
                     <div class="h7 text-muted">email : ${user.getEmail()}</div>
                     <div class="h7">address: ${user.getAddress()}
