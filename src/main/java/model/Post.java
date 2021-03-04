@@ -39,7 +39,6 @@ public class Post {
         return getUser().getEmail();
     }
 
-
     public User getUser() {
         return user;
     }

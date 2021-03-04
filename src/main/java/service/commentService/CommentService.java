@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommentService {
-    public static List<Comment> getCommentByPost_id(int post_id){
+    public List<Comment> getCommentByPost_id(int post_id){
         List<Comment> list=new ArrayList<>();
         Connection connection= GetConnection.getConnetion();
         try {

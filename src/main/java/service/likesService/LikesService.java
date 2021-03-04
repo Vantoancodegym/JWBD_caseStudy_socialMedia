@@ -6,7 +6,7 @@ import storage.GetConnection;
 import java.sql.*;
 
 public class LikesService {
-    public static int getLikeAmount(int post_id){
+    public int getLikeAmount(int post_id){
         int likeAmount=0;
         Connection connection= GetConnection.getConnetion();
         try {
