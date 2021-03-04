@@ -4,45 +4,63 @@
 <html>
 <head>
     <title>Registation Form</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="login-wrap">
-    <div class="login-html">
-        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Login</label>
-        <input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab">Forgot Password</label>
-        <div class="login-form">
-            <div class="sign-in-htm">
-                <div class="panel-heading">
-                    <h4 style="color: red">${msg}</h4>
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <div class="" id="loginModal">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3>Have an Account?</h3>
                 </div>
-                <form action="/login" method="post">
-                    <div class="group">
-                        <label for="account" class="label">Account</label>
-                        <input id="account" type="text" class="input" name="account">
-                    </div>
-                    <div class="group">
-                        <label for="password" class="label">Password</label>
-                        <input id="password" type="password" class="input" data-type="password" name="password">
-                    </div>
-                    <button class="btn btn-success">Login</button>
-                    <button class="btn btn-success"><a href="/register">Register Account</a></button>
-                    <div class="hr"></div>
+                <div class="modal-body">
+                    <div class="well">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
+                            <li><a href="/register" data-toggle="tab">Create Account</a></li>
+                            <li><a href="/register" data-toggle="tab">${msg}</a></li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane active in" id="login">
+                                <form class="form-horizontal"  method="POST">
+                                    <fieldset>
+                                        <div id="legend">
+                                            <legend class="">Login</legend>
+                                        </div>
+                                        <div class="control-group">
+                                            <!-- Username -->
+                                            <label class="control-label"  for="username">Username</label>
+                                            <div class="controls">
+                                                <input type="text" id="username" name="account" placeholder="" class="input-xlarge">
+                                            </div>
+                                        </div>
 
-            </form>
-            </div>
-            <div class="for-pwd-htm">
-                <div class="group">
-                    <input type="submit" class="button" value="Reset Password">
+                                        <div class="control-group">
+                                            <!-- Password-->
+                                            <label class="control-label" for="password">Password</label>
+                                            <div class="controls">
+                                                <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <!-- Button -->
+                                            <div class="controls">
+                                                <button class="btn btn-success">Login</button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="hr"></div>
             </div>
         </div>
     </div>
 </div>
-
 </body>
 </html>

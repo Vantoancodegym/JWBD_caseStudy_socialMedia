@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("/facebook?action=home&id="+userId);
 
         }else{
-            request.setAttribute("msg","Thông tin đăng nhập không đúng");
+            request.setAttribute("msg","! account or password is not true");
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/login.jsp");
             requestDispatcher.forward(request, response);
         }
