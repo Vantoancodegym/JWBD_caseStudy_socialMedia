@@ -46,8 +46,8 @@
                     <input placeholder="Phone Number" required="true" type="text" class="form-control" id="phoneNumber" name="phoneNumber"/>
                 </div>
                 <div class="form-group">
-                    <label for="avata">Avata</label>
-                    <input required="true" type="text" class="form-control" id="avata" name="avata"/>
+                    <label for="avatar">Avatar</label>
+                    <input required="true" type="text" class="form-control" id="avatar" name="avatar"/>
                 </div>
                 <div class="form-group">
                     <label for="pwd">Password:</label>
@@ -60,6 +60,9 @@
                 <div class="form-group">
                     <label for="address">Address:</label>
                     <input placeholder="Address" type="text" class="form-control" id="address" name="address"/>
+                </div>
+                <div class="form-group">
+                    <label >${msg}</label>
                 </div>
                 <button class="btn btn-success">Register</button>
             </form>
