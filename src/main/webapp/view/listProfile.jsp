@@ -51,62 +51,9 @@
                     <div class="h7">address: ${user.getAddress()}
                     </div>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <c:forEach items="${listUser}" var="user">
-                        <li class="list-group-item">
-                            <tr>
-                                <td><img src="${user.getAvatar()}" width="50px"></td>
-                                <td>${user.getAccount()}</td>
-                                <td><a href="/facebook?action=messeage&userId=${userId}&friendId=${user.getId()}">messeage</a></td>
-                                <td><a href="/facebook?action=profile&userId=${userId}&proId=${user.getId()}">profile</a></td>
-                                <td ><a href="facebook?action=add&userId=${userId}&friendId=${user.getId()}">Add Friend</a></td>
-
-                            </tr>
-                        </li>
-                    </c:forEach>
-                </ul>
             </div>
         </div>
         <div class="col-md-6 gedf-main">
-            <!--- \\\\\\\Post-->
-            <div class="card gedf-card">
-                <div class="card-header">
-                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">Make
-                                a new post</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="images-tab" data-toggle="tab" role="tab" aria-controls="images" aria-selected="false" href="#images">Images</a>
-                        </li>
-                    </ul>
-                </div>
-                <form method="post" action="/facebook?action=create&userId=${userId}">
-                    <div class="card-body">
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
-                                <div class="form-group">
-                                    <label class="sr-only" for="message">post</label>
-                                    <textarea class="form-control" id="message" rows="3" placeholder="What are you thinking?" name ="content"></textarea>
-                                </div>
-
-                            </div>
-                            <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
-                                <div class="form-group">
-                                    <input type="text" placeholder="add image link" width="300px" name="image">
-                                </div>
-                                <div class="py-4"></div>
-                            </div>
-                        </div>
-                        <div class="btn-toolbar justify-content-between">
-                            <div class="btn-group">
-                                <input type="submit" class="btn btn-primary" value="Post" >
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!-- Post /////-->
 
             <!--- \\\\\\\Post-->
             <c:forEach items="${list}" var="post">
@@ -167,16 +114,6 @@
             </c:forEach>
             <!-- Post /////-->
 
-        </div>
-        <div class="col-md-3">
-            <c:forEach items="${listNotice}" var="notice">
-                <div class="card gedf-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Notice</h5>
-                        <p class="card-text">${notice.getContent()}</p>
-                    </div>
-                </div>
-            </c:forEach>
         </div>
     </div>
 </div>

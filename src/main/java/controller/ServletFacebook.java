@@ -43,9 +43,7 @@ public class ServletFacebook extends HttpServlet {
             case "messeage":
                 showFormMesseage(req,resp);
                 break;
-            case "create":
-                showFormCreate(req, resp);
-                break;
+
             case "edit":
                 showEditForm(req, resp);
                 break;
@@ -145,10 +143,12 @@ public class ServletFacebook extends HttpServlet {
     private void showProfile(HttpServletRequest req, HttpServletResponse resp) {
         int userId=Integer.parseInt(req.getParameter("userId"));
         int proId=Integer.parseInt(req.getParameter("proId"));
+        User user=userService.findById(proId);
         List<Post> list=postService.findAllByUser(proId);
         req.setAttribute("userId",userId);
         req.setAttribute("list",list);
-        RequestDispatcher dispatcher=req.getRequestDispatcher("listProfile.jsp");
+        req.setAttribute("user",user);
+        RequestDispatcher dispatcher=req.getRequestDispatcher("view/listProfile.jsp");
         try {
             dispatcher.forward(req,resp);
         } catch (ServletException e) {
@@ -202,19 +202,6 @@ public class ServletFacebook extends HttpServlet {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    private void showFormCreate(HttpServletRequest req, HttpServletResponse resp) {
-        int userId= Integer.parseInt(req.getParameter("userId"));
-        req.setAttribute("userId",userId);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("create.jsp");
-        try {
-            requestDispatcher.forward(req, resp);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
