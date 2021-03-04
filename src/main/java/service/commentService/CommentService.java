@@ -1,6 +1,7 @@
 package service.commentService;
 
 import model.Comment;
+import service.userService.UserService;
 import storage.GetConnection;
 
 import java.sql.Connection;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommentService {
+    private UserService userService=new UserService();
     public List<Comment> getCommentByPost_id(int post_id){
         List<Comment> list=new ArrayList<>();
         Connection connection= GetConnection.getConnetion();
@@ -23,6 +25,7 @@ public class CommentService {
                 int user_id=resultSet.getInt("user_id");
                 String content=resultSet.getString("content");
                 Comment comment=new Comment(id,user_id,post_id,content);
+                comment.setUser(userService.findById(user_id));
                 list.add(comment);
             }
 
