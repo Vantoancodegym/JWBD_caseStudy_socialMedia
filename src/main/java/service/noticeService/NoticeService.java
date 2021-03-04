@@ -20,6 +20,12 @@ public class NoticeService {
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
     public List<Notice> findNoticeByUser_id(int user_id){
@@ -39,6 +45,12 @@ public class NoticeService {
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
         return list;
 

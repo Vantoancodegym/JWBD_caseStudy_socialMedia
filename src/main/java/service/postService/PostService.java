@@ -36,6 +36,12 @@ public class PostService implements IPostService{
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
         return list;
     }
@@ -60,6 +66,12 @@ public class PostService implements IPostService{
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
         return post;
     }
@@ -75,6 +87,12 @@ public class PostService implements IPostService{
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
 
@@ -88,6 +106,12 @@ public class PostService implements IPostService{
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
     }
@@ -101,6 +125,12 @@ public class PostService implements IPostService{
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
     public List<Post> findAllByUser(int user_id) {
@@ -123,6 +153,12 @@ public class PostService implements IPostService{
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
         return posts;
     }

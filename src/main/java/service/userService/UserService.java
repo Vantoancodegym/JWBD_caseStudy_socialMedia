@@ -31,6 +31,12 @@ public class UserService implements IUser{
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
         return list;
     }
@@ -54,6 +60,12 @@ public class UserService implements IUser{
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
         return user;
     }
@@ -74,6 +86,12 @@ public class UserService implements IUser{
             rowEffect=preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
         if (rowEffect>0) return true;
         return false;
