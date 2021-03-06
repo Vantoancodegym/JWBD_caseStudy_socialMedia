@@ -208,8 +208,11 @@ public class ServletFacebook extends HttpServlet {
     private void showFormMesseage(HttpServletRequest req, HttpServletResponse resp) {
         int userId= Integer.parseInt(req.getParameter("userId"));
         int friendId= Integer.parseInt(req.getParameter("friendId"));
+        List<User> userList=userService.findAll();
         List<Messeage> listMess= messageService.findByTwoId(userId,friendId);
+        req.setAttribute("userId",userId);
         req.setAttribute("listMess",listMess);
+        req.setAttribute("userList",userList);
         RequestDispatcher dispatcher=req.getRequestDispatcher("view/messForm.jsp");
         try {
             dispatcher.forward(req,resp);

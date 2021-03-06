@@ -15,7 +15,7 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/register.css">
+    <style><%@include file="/view/css/register.css"%></style>
 </head>
 <body>
 <div class="container">

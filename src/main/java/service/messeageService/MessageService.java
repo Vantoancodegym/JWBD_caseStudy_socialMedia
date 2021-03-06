@@ -1,6 +1,8 @@
 package service.messeageService;
 
 import model.Messeage;
+import model.User;
+import service.userService.UserService;
 import storage.GetConnection;
 
 import java.sql.*;
@@ -8,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessageService {
+    private UserService userService=new UserService();
+
     public List<Messeage> findByTwoId(int user_id, int friend_id){
         List<Messeage> list=new ArrayList<>();
         Connection connection= GetConnection.getConnetion();
@@ -22,6 +26,8 @@ public class MessageService {
                 int friendId=resultSet.getInt("friend_id");
                 String content=resultSet.getString("content");
                 Messeage messeage=new Messeage(id,userId,friendId,content);
+                User user=userService.findById(userId);
+                messeage.setUser(user);
                 list.add(messeage);
             }
         } catch (SQLException throwables) {
