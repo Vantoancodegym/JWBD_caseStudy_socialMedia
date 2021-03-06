@@ -28,11 +28,11 @@
 <body>
 <nav class="navbar navbar-light bg-white">
     <a href="#" class="navbar-brand">Facebook</a>
-    <form class="form-inline">
+    <form class="form-inline" method="post" action="/facebook?action=find&userId=${userId}">
         <div class="input-group">
-            <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" name="searchId" placeholder="input id to search">
             <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="button" id="button-addon2">
+                <button class="btn btn-outline-primary" type="submit" id="button-addon2">
                     <i class="fa fa-search"></i>
                 </button>
             </div>

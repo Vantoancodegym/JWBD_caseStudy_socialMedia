@@ -8,7 +8,6 @@ import service.likesService.LikesService;
 import service.noticeService.NoticeService;
 import service.relationshipService.RelationshipService;
 import service.userService.UserService;
-//import storage.UserDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -268,8 +267,33 @@ public class ServletFacebook extends HttpServlet {
             case "edit":
                 updatePost(req, resp);
                 break;
+            case "find":
+                findUser(req,resp);
+                break;
         }
 
+    }
+
+    private void findUser(HttpServletRequest req, HttpServletResponse resp) {
+        int id = Integer.parseInt(req.getParameter("searchId"));
+        int userId=Integer.parseInt(req.getParameter("userId"));;
+        User user= userService.findById(id);
+        if (user==null) {
+            RequestDispatcher dispatcher =req.getRequestDispatcher("view/notFound.jsp");
+            try {
+                dispatcher.forward(req,resp);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else {
+            try {
+                resp.sendRedirect("/facebook?action=profile&userId="+userId+"&proId="+id);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void updatePost(HttpServletRequest req, HttpServletResponse resp) {
