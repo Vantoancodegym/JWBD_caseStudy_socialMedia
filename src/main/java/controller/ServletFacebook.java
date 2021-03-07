@@ -194,7 +194,7 @@ public class ServletFacebook extends HttpServlet {
     private void showFormMesseage(HttpServletRequest req, HttpServletResponse resp) {
         int userId= Integer.parseInt(req.getParameter("userId"));
         int friendId= Integer.parseInt(req.getParameter("friendId"));
-        List<User> userList=userService.findAll();
+        List<User> userList=userService.findAllExceptId(userId);
         List<Messeage> listMess= messageService.findByTwoId(userId,friendId);
         req.setAttribute("userId",userId);
         req.setAttribute("listMess",listMess);
@@ -233,7 +233,7 @@ public class ServletFacebook extends HttpServlet {
         int user_id= Integer.parseInt(req.getParameter("id"));
         User user=userService.findById(user_id);
         List<Post> list=postService.findAll();
-        List<User> listUser=userService.findAll();
+        List<User> listUser=userService.findAllExceptId(user_id);
         List<Notice> listNotice=noticeService.findNoticeByUser_id(user_id);
         req.setAttribute("user",user);
         req.setAttribute("listUser",listUser);

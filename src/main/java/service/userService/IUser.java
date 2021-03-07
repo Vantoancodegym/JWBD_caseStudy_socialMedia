@@ -9,4 +9,5 @@ public interface IUser {
     User findById(int id);
     boolean create(User user);
     boolean update(User user);
+    List<User> findAllExceptId(int id);
 }

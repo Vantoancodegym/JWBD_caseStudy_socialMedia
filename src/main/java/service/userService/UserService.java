@@ -98,6 +98,38 @@ public class UserService implements IUser{
     }
 
     @Override
+    public List<User> findAllExceptId(int id) {
+        List<User> list=new ArrayList<>();
+        Connection connection = GetConnection.getConnetion();
+        try {
+            PreparedStatement preparedStatement=connection.prepareStatement("select * from user");
+            ResultSet resultSet=preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int user_id=resultSet.getInt("id");
+                if (user_id!=id) {
+                    String account = resultSet.getString("account");
+                    String password = resultSet.getString("password");
+                    String email = resultSet.getString("email");
+                    String avatar = resultSet.getString("avatar");
+                    int phoneNumber = resultSet.getInt("phoneNumber");
+                    String address = resultSet.getString("address");
+                    User user = new User(user_id, account, password, email, avatar, phoneNumber, address);
+                    list.add(user);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        return list;
+    }
+
+    @Override
     public boolean update(User user) {
         return false;
     }
