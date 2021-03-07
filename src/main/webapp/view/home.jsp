@@ -51,7 +51,7 @@
                     <div class="h7 text-muted">email : ${user.getEmail()}</div>
                     <div class="h7">address: ${user.getAddress()}</div>
                     <div class="h7"><a href="/facebook?action=profile&userId=${userId}&proId=${userId}">view your profile</a></div>
-                    <div class="h7"><a>edit profile</a></div>
+                    <div class="h7"><a href="/facebook?action=updateUser&userId=${userId}">update your profile</a></div>
                     <div class="h7"><a href="/login">logout</a></div>
                 </div>
                 <ul class="list-group list-group-flush">

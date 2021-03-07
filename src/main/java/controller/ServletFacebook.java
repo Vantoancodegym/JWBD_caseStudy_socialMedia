@@ -65,12 +65,32 @@ public class ServletFacebook extends HttpServlet {
             case "deny":
                 denyRequest(req, resp);
                 break;
+            case "updateUser":
+                showUpdateUserForm(req,resp);
+                break;
 
         }
     }
-    private void addFriend(HttpServletRequest request, HttpServletResponse response) {
-        int userId = Integer.parseInt(request.getParameter("userId"));
-        int friendId = Integer.parseInt(request.getParameter("friendId"));
+
+    private void showUpdateUserForm(HttpServletRequest req, HttpServletResponse resp) {
+        int userId = Integer.parseInt(req.getParameter("userId"));
+        User user=userService.findById(userId);
+        req.setAttribute("user",user);
+        req.setAttribute("userId",userId);
+        RequestDispatcher dispatcher=req.getRequestDispatcher("view/updateUser.jsp");
+        try {
+            dispatcher.forward(req,resp);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void addFriend(HttpServletRequest req, HttpServletResponse resp) {
+        int userId = Integer.parseInt(req.getParameter("userId"));
+        int friendId = Integer.parseInt(req.getParameter("friendId"));
         User user=userService.findById(userId);
         int id = (int) (Math.random() * 1000);
         RelationShip relationShip = new RelationShip(id, userId, friendId, RELATIVE_STATUS_ID_SEND_REQUEST);
@@ -85,7 +105,7 @@ public class ServletFacebook extends HttpServlet {
             noticeService.creatNotice(notice);
         }
         try {
-            response.sendRedirect("/facebook?action=home&id=" + userId);
+            resp.sendRedirect("/facebook?action=home&id=" + userId);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -270,6 +290,32 @@ public class ServletFacebook extends HttpServlet {
             case "find":
                 findUser(req,resp);
                 break;
+            case "updateUser":
+                updateUser(req,resp);
+                break;
+        }
+
+    }
+
+    private void updateUser(HttpServletRequest req, HttpServletResponse resp) {
+        int userId = Integer.parseInt(req.getParameter("userId"));
+        User user=userService.findById(userId);
+        String avatar=req.getParameter("avatar");
+        String password=req.getParameter("password");
+        String address=req.getParameter("address");
+        user.setAvatar(avatar);
+        user.setPassword(password);
+        user.setAddress(address);
+        boolean rowEffect=userService.update(user);
+        if (rowEffect){
+            String content="You have updated your profile";
+            Notice notice =new Notice(userId,content);
+            noticeService.creatNotice(notice);
+        }
+        try {
+            resp.sendRedirect("/facebook?action=home&id="+userId);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }

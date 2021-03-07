@@ -131,6 +131,18 @@ public class UserService implements IUser{
 
     @Override
     public boolean update(User user) {
+        Connection connection = GetConnection.getConnetion();
+        try {
+            PreparedStatement preparedStatement=connection.prepareStatement("update user set avatar=?, password=?,address=? where id=?");
+            preparedStatement.setString(1, user.getAvatar());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getAddress());
+            preparedStatement.setInt(4,user.getId());
+            int rowEffect=preparedStatement.executeUpdate();
+            if (rowEffect>0) return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 }
