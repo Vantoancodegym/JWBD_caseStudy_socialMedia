@@ -1,0 +1,54 @@
+create database case_study;
+use case_study;
+#tao bang user
+create table User(id int primary key auto_increment, account nvarchar(50) unique , password nvarchar(50),
+                  email nvarchar(50), avatar nvarchar(255), phoneNumber int, address nvarchar(255));
+#post bai viet
+create table Post(id int primary key auto_increment, image nvarchar(255), content nvarchar(255), user_id int);
+#bang like
+create table Likes(id int primary key auto_increment, post_id int, user_id int);
+#bang ket ban
+create table Relationship(id int primary key auto_increment, user_id int, friend_id int, relative_status_id int);
+#trang thai ket ban
+create table Relative_Status(id int primary key auto_increment, status nvarchar(255));
+insert into Relative_Status(status) VALUES ('send friend request');
+insert into Relative_Status(status) VALUES ('accept friend request');
+insert into Relative_Status(status) VALUES ('deny friend request');
+#tao khoa ngoai
+alter table Post add foreign key (user_id) references User(id);
+alter table Likes add foreign key (user_id) references User(id);
+alter table Likes add foreign key (post_id) references Post(id);
+alter table Relationship add foreign key (user_id) references User(id);
+alter table Relationship add foreign key (friend_id) references User(id);
+alter table Relationship add foreign key (relative_status_id) references Relative_Status(id);
+use case_study;
+alter table user modify avatar text;
+alter table post modify image text;
+select count(post_id) from likes where post_id=9;
+create procedure count_post_like(in post_id int, out result int)
+begin
+    set result=(select count(post_id) from likes where Likes.post_id=post_id);
+end;
+create table Afds(id int, name varchar(50), unique (id,name));
+drop table Afds;
+alter table Likes add constraint unique (post_id,user_id);
+create table notice(id int primary key , user_id int references user(id), content text);
+create table comment (id int primary key , user_id int references user(id),post_id int references post(id),
+content text);
+alter table comment modify id int auto_increment;
+alter table notice modify id int auto_increment;
+create table messeage (id int auto_increment primary key ,
+user_id int references user(id),
+friend_id int references user(id),
+content text
+)
+
+select * from user;
+create procedure get_messeage_by_id(user_id int,friend_id int)
+begin
+    select * from messeage where (messeage.user_id=user_id and messeage.friend_id=friend_id)
+                              or (messeage.user_id=friend_id and messeage.friend_id=user_id);
+end;
+
+call get_messeage_by_id(1,2);
+
