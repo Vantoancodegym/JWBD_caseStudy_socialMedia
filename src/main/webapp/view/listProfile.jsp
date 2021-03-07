@@ -86,7 +86,7 @@
                     </div>
                     <div class="card-body">
                         <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
-                        <img src="${post.getImage()}>">
+                        <img src="${post.getImage()}">
 
                         <p class="card-text">
                                 ${post.getContent()}
