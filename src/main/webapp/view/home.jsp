@@ -118,7 +118,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="mr-2">
-                                    <img class="rounded-circle" width="45" src="${post.getUserAvatar()}" alt="">
+                                    <img class="rounded-circle" width="45" src="${post.getUserAvatar()}">
                                 </div>
                                 <div class="ml-2">
                                     <div class="h5 m-0">${post.getUserAcount()}</div>
@@ -141,11 +141,11 @@
                     </div>
                     <div class="card-body">
                         <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
-                        <img src="${post.getImage()}>">
-
                         <p class="card-text">
                                 ${post.getContent()}
                         </p>
+                        <img src="${post.getImage()}" >
+
                     </div>
                     <div class="card-footer">
                         <span class="card-link"><i class="fa fa-gittip"></i>${post.getLikeAmount()}</span>
